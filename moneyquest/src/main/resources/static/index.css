@@ -1,0 +1,13 @@
+ /* Estilo para centralizar o cabeçalho */
+ .page-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+/* Estilo para a tabela */
+.table th, .table td {
+    vertical-align: middle;
+}
+/* Estilo para o botão Nova Quest */
+.btn-new-quest {
+    margin-top: 20px;
+}

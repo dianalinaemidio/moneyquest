@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Quest</title>
+    <!-- Adicionando Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="C:\Users\ddsou\OneDrive\Área de Trabalho\Diana\facul\POO\moneyquest\moneyquest\src\main\resources\static\form.css">
+
+</head>
+<body>
+    <!-- Cabeçalho da página -->
+    <div class="page-header">
+        <h1>Gerenciar Quest</h1>
+    </div>
+    
+    <!-- Formulário para gerenciar uma quest -->
+    <form th:action="${quest ? '/quests/' + quest.id + '/update' : '/quests'}" method="post">
+        <!-- Se há uma quest existente, exibe o campo hidden com o ID -->
+        <input th:if="${quest}" type="hidden" name="id" th:value="${quest.id}">
+        
+        <div class="form-group">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="title" class="form-control" th:value="${quest ? quest.title : ''}">
+        </div>
+        
+        <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="description" class="form-control" th:text="${quest ? quest.description : ''}"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="dataVencimento">Data de Vencimento:</label>
+            <input type="date" id="dataVencimento" name="dueDate" class="form-control" th:value="${quest ? quest.dueDate : ''}">
+        </div>
+        
+        <div class="form-group">
+            <label for="categoria">Categoria:</label>
+            <select id="categoria" name="category" class="form-control">
+                <option value="Estudos" th:selected="${quest ? quest.category == 'Estudos' : false}">Estudos</option>
+                <option value="Trabalho" th:selected="${quest ? quest.category == 'Trabalho' : false}">Trabalho</option>
+                <option value="Lazer" th:selected="${quest ? quest.category == 'Lazer' : false}">Lazer</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="prioridade">Prioridade:</label>
+            <select id="prioridade" name="priority" class="form-control">
+                <option value="Alta" th:selected="${quest ? quest.priority == 'Alta' : false}">Alta</option>
+                <option value="Média" th:selected="${quest ? quest.priority == 'Média' : false}">Média</option>
+                <option value="Baixa" th:selected="${quest ? quest.priority == 'Baixa' : false}">Baixa</option>
+            </select>
+        </div>
+        
+        <!-- Botão para enviar o formulário -->
+        <input type="submit" value="Cadastrar" class="btn btn-primary">
+        <input type="submit" value="Atualizar" class="btn btn-primary">
+
+
+    </form>
+
+    <!-- Adicionando Bootstrap JavaScript (opcional, apenas se você precisar de funcionalidades JS do Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

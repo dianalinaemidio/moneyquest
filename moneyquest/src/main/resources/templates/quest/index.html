@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de Quests</title>
+    <!-- Adicionando Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="C:\Users\ddsou\OneDrive\Área de Trabalho\Diana\facul\POO\moneyquest\moneyquest\src\main\resources\static\index.css">
+
+  
+</head>
+<body>
+    <!-- Cabeçalho da página -->
+    <div class="page-header">
+        <h1>Listagem de Quests</h1>
+    </div>
+    
+    <!-- Tabela para exibir as quests -->
+    <div class="container">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <!-- Cabeçalho da tabela -->
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>Data de Vencimento</th>
+                    <th>Categoria</th>
+                    <th>Prioridade</th>
+                    <th>Ações</th> <!-- Coluna para ações (Editar e Excluir) -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iteração sobre as quests para exibição -->
+                <th:block th:each="quest : ${quests}">
+                    <tr>
+                        <!-- Colunas com os dados de cada quest -->
+                        <td th:text="${quest.id}"></td>
+                        <td th:text="${quest.title}"></td>
+                        <td th:text="${quest.description}"></td>
+                        <!-- <td th:text="${quest.dueDate}"></td> -->
+                        <td th:text="${quest.category}"></td>
+                        <td th:text="${quest.priority}"></td>
+                        <!-- Coluna com links para editar e excluir cada quest -->
+                        <td>
+                            <a class="btn btn-primary btn-sm" th:href="@{/quests/{id}/edit(id=*{quest.id})}">Editar</a>
+                            <a class="btn btn-danger btn-sm" th:href="@{/quests/{id}/delete(id=*{quest.id})}">Excluir</a>
+                        </td>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Link para criar uma nova quest -->
+    <div class="container">
+        <a href="/quest/new" class="btn btn-success btn-new-quest" >Nova Quest</a>
+    </div>
+
+</body>
+</html>
